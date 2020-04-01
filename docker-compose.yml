@@ -1,0 +1,35 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  avideo_encoder:
+    image: avideo_encoder:latest
+    restart: always
+    links:
+      - db
+    ports:
+      - 8082:8000
+
+  avideo:
+    image: avideo_platform:latest
+    restart: always
+    links:
+      - db
+    ports:
+      - 8081:8000
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Hello123!
+    ports:
+      - 33060:33060
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9001:8080
+

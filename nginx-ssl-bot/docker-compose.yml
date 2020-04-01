@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx_ssl_bot:latest
+    restart: always
+    environment:
+      CERTBOT_EMAIL: "ssl@aprendecr.com"
+    #ports:
+    #  - "80:80"
+    #  - "443:443"
+    network_mode: host
+    volumes:
+      - ./conf.d:/etc/nginx/user.conf.d:ro
+
+
