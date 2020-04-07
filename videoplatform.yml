@@ -3,7 +3,7 @@ version: '3.1'
 
 services:
   avideo_encoder:
-    image: avideo_encoder:latest
+    image: localhost:5000/avideo_encoder
     restart: always
     links:
       - db
@@ -11,7 +11,7 @@ services:
       - 8082:8000
 
   avideo:
-    image: avideo_platform:latest
+    image: localhost:5000/avideo_platform
     restart: always
     links:
       - db
@@ -23,9 +23,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: YOUR_PASS_HERE
+      MYSQL_ROOT_PASSWORD: Hello123!
     ports:
-      - 33060:33060
+      - 3306:33060
 
   adminer:
     image: adminer

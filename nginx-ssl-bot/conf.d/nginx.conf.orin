@@ -1,0 +1,20 @@
+ssl_certificate     /etc/letsencrypt/live/aprendecr.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/aprendecr.com/privkey.pem;
+
+server {
+    listen              80;
+    server_name         *.aprendecr.com;
+
+    rewrite ^ https://$host$request_uri? permanent;
+}
+
+
+server {
+    listen              443 ssl;
+    server_name         streaming.aprendecr.com;
+
+    location / {
+        proxy_pass         http://localhost:8081;
+    }
+
+}

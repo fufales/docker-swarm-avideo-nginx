@@ -2,7 +2,7 @@ version: '3'
 
 services:
   proxy:
-    image: nginx_ssl_bot:latest
+    image: nginx_aprende
     restart: always
     environment:
       CERTBOT_EMAIL: "ssl@aprendecr.com"
